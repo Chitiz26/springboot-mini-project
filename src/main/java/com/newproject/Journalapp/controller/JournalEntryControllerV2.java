@@ -4,7 +4,6 @@ import com.newproject.Journalapp.service.JournalEntryService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +47,7 @@ public class JournalEntryControllerV2
         if(old!=null)
         {
             old.setTitle(newEntry.getTitle()!=null&&!newEntry.getTitle().equals("")?newEntry.getTitle():old.getTitle());
-            old.setContent(newEntry.getContent()!=null&&!newEntry.equals("")?newEntry.getContent():old.getContent());
+            old.setContent(newEntry.getContent()!=null&&!newEntry.getContent().equals("")?newEntry.getContent():old.getContent());
         }
         journalEntryService.saveEntry(old);
         return old;
