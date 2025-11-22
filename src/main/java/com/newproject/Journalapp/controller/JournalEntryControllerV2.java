@@ -1,6 +1,8 @@
 package com.newproject.Journalapp.controller;
 import com.newproject.Journalapp.entity.JournalEntry;
+import com.newproject.Journalapp.entity.User;
 import com.newproject.Journalapp.service.JournalEntryService;
+import com.newproject.Journalapp.service.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,12 @@ public class JournalEntryControllerV2
 {
     @Autowired
     public JournalEntryService journalEntryService;
-    @GetMapping
-    public List<JournalEntry> getall() //printing them all
+    @Autowired
+    public UserService userService;
+    @GetMapping("{userName}")
+    public List<JournalEntry> getall(@PathVariable String userName) //printing them all
     {
+        User user=userService.findByUserName(userName);
         return journalEntryService.getAll();
     }
 
@@ -38,7 +43,7 @@ public class JournalEntryControllerV2
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    @DeleteMapping("id/{myId")
+    @DeleteMapping("id/{myId}")
     public boolean deleteJournalEntryById(@PathVariable ObjectId myID) //delete by id
     {
         journalEntryService.deleteById(myID);

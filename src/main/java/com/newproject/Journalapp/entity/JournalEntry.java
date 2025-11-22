@@ -21,6 +21,4 @@ public class JournalEntry
     private String title;
     private String content;
     private LocalDateTime date;
-    @DBRef
-    private List<JournalEntry> list=new ArrayList<>();
 }
