@@ -23,5 +23,5 @@ public class User
     @NonNull
     private  String password;
     @DBRef
-    private List<JournalEntry> list=new ArrayList<>();
+    private List<JournalEntry> JournalEntries=new ArrayList<>();
 }

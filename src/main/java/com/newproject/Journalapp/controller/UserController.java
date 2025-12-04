@@ -39,4 +39,17 @@ public class UserController
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    //My addition
+    @GetMapping("/{userName}")
+    public ResponseEntity<?> getUserByUserName(@PathVariable String userName) {
+        User user = userService.findByUserName(userName);
+
+        if (user == null)
+        {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
 }
